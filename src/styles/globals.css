@@ -1,58 +1,156 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
+
 @theme {
+  /* --------------------------------------------------------------------------
+     Typography
+     -------------------------------------------------------------------------- */
+
   --font-sans:
     Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   --font-mono:
     "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
 
+    --font-display: "Bebas Neue", sans-serif;
+
+  /* --------------------------------------------------------------------------
+     Color System
+     -------------------------------------------------------------------------- */
+
+  /* Canvas */
+
   --color-background: #101114;
   --color-surface: #17181c;
-  --color-surface-soft: #1d1f24;
+  --color-surface-soft: #1f2126;
 
-  --color-foreground: #f0ece4;
-  --color-muted: #aaa7a1;
-  --color-subtle: #706f6c;
+  /* Typography */
 
-  --color-border: #292b31;
-  --color-border-strong: #3a3d44;
+  --color-foreground: #f2ede5;
+  --color-muted: #a7a39d;
+  --color-subtle: #706d68;
 
-  --color-accent: #c97857;
-  --color-accent-soft: #dda083;
-  --color-accent-muted: #8e513b;
+  /* Borders */
+
+  --color-border: #2a2d33;
+  --color-border-strong: #3b3f47;
+
+  /* Brand */
+
+  --color-accent: #c56a43;
+  --color-accent-soft: #d79674;
+  --color-accent-muted: #8f4e34;
+
+  /* Project Identity */
+
+  --color-gatepulse: #7c6df2;
+  --color-voice-agent: #73b89b;
+
+  /* Status */
+
+  --color-success: #73b89b;
+  --color-warning: #d6a04d;
+  --color-danger: #d36d6d;
+
+  /* --------------------------------------------------------------------------
+     Radius
+     -------------------------------------------------------------------------- */
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* --------------------------------------------------------------------------
+     Shadows
+     -------------------------------------------------------------------------- */
+
+  --shadow-soft: 0 8px 30px rgb(0 0 0 / 0.18);
+  --shadow-large: 0 20px 60px rgb(0 0 0 / 0.32);
+
+  /* --------------------------------------------------------------------------
+     Layout
+     -------------------------------------------------------------------------- */
+
+  --container-width: 1280px;
+  --reading-width: 760px;
+
+  /* --------------------------------------------------------------------------
+     Motion
+     -------------------------------------------------------------------------- */
+
+  --duration-fast: 180ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* ==========================================================================
+   ROOT
+   ========================================================================== */
 
 :root {
   color: var(--color-foreground);
   background: var(--color-background);
+
   font-family: var(--font-sans);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
-  scroll-behavior: smooth;
   background: var(--color-background);
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  margin: 0;
+
   overflow-x: hidden;
+
   background: var(--color-background);
   color: var(--color-foreground);
 }
 
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
 button,
-a,
 input,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  border: none;
+  background: transparent;
 }
 
 a {
@@ -60,25 +158,65 @@ a {
   text-decoration: none;
 }
 
-button {
-  border: 0;
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-img,
-svg {
-  display: block;
-  max-width: 100%;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
+
+/* ==========================================================================
+   SELECTION
+   ========================================================================== */
 
 ::selection {
   background: var(--color-accent);
   color: var(--color-background);
 }
 
+/* ==========================================================================
+   FOCUS
+   ========================================================================== */
+
 :focus-visible {
   outline: 2px solid var(--color-accent-soft);
   outline-offset: 4px;
 }
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-muted);
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -90,7 +228,7 @@ svg {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

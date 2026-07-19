@@ -1,16 +1,18 @@
-import { SiteHeader } from "@/components/layout/site-header";
-import { Hero } from "@/components/sections/hero";
+import { OpeningChapter } from "@/components/chapters/opening/opening-chapter";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
+    <main>
+      <OpeningChapter />
 
-      <main>
-        <Hero />
-      </main>
-    </div>
+      <section
+        id="work"
+        className="flex min-h-[60vh] items-center justify-center px-6"
+      >
+        <p className="font-mono text-sm uppercase tracking-[0.2em] text-muted">
+          Engineering work — next chapter
+        </p>
+      </section>
+    </main>
   );
 }
-
-export default App;
