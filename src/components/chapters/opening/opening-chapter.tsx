@@ -219,10 +219,13 @@ export function OpeningChapter() {
           </article>
         </main>
 
-        <a href="#work" className="opening-scroll">
-          <span>Scroll to explore</span>
-          <ArrowDown aria-hidden="true" />
-        </a>
+        <a
+  href="#work"
+  className="opening-scroll"
+  aria-label="Scroll to selected engineering work"
+>
+  <span aria-hidden="true">↓</span>
+</a>
       </div>
     </section>
   );
