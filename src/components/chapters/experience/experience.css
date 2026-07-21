@@ -1,0 +1,579 @@
+/* =========================================================
+   EXPERIENCE CHAPTER
+   ========================================================= */
+
+.experience-chapter {
+  position: relative;
+  overflow: hidden;
+   padding-top: clamp(5.25rem, 6vw, 5.5rem)
+    1.5rem
+    clamp(3rem, 7vw, 6rem);
+
+  background:
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(240, 120, 70, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 12% 72%,
+      rgba(139, 92, 246, 0.055),
+      transparent 32%
+    ),
+    #0b0c10;
+}
+
+.experience-chapter::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px
+    );
+
+  background-size: 72px 72px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.78) 12%,
+    rgba(0, 0, 0, 0.78) 82%,
+    transparent
+  );
+}
+
+.experience-chapter__container {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 1240px);
+  margin-inline: auto;
+}
+
+.experience-chapter__header {
+  max-width: 880px;
+  margin-bottom: clamp(4.5rem, 7vw, 6.5rem);
+}
+
+.experience-chapter__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+
+  color: #f07846;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.experience-chapter__eyebrow-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #f07846;
+  box-shadow:
+    0 0 0 4px rgba(240, 120, 70, 0.08),
+    0 0 18px rgba(240, 120, 70, 0.72);
+}
+
+.experience-chapter__title {
+  max-width: 820px;
+  margin-top: 1.65rem;
+
+  color: #f1eee8;
+
+  font-family: "Inter", sans-serif;
+  font-size: clamp(3rem, 5.3vw, 5.4rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.experience-chapter__title span {
+  color: #c65f3d;
+}
+
+.experience-chapter__description {
+  max-width: 720px;
+  margin-top: 1.8rem;
+  color: #9c9da6;
+  font-size: clamp(1rem, 1.4vw, 1.08rem);
+  line-height: 1.8;
+}
+
+/* =========================================================
+   EXPERIENCE TIMELINE
+   ========================================================= */
+
+.experience-chapter__list {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding-left: 5.25rem;
+}
+
+.experience-chapter__list::before {
+  position: absolute;
+  top: 1.75rem;
+  bottom: 1.75rem;
+  left: 1.55rem;
+
+  width: 1px;
+  content: "";
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(240, 120, 70, 0.8),
+      rgba(240, 120, 70, 0.18) 48%,
+      rgba(155, 103, 244, 0.45)
+    );
+}
+
+/* =========================================================
+   EXPERIENCE CARD
+   ========================================================= */
+
+.experience-card {
+  --experience-accent: 240, 120, 70;
+
+  position: relative;
+}
+
+.experience-card[data-experience="secondary"] {
+  --experience-accent: 155, 103, 244;
+}
+
+.experience-card__node {
+  position: absolute;
+  top: 2rem;
+  left: -5.25rem;
+
+  display: flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(var(--experience-accent), 0.62);
+  border-radius: 50%;
+
+  color: rgb(var(--experience-accent));
+  background: #0b0c10;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+
+  box-shadow:
+    0 0 0 8px #0b0c10,
+    0 0 28px rgba(var(--experience-accent), 0.18);
+}
+
+.experience-card__shell {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid rgba(var(--experience-accent), 0.28);
+  border-radius: 1.1rem;
+
+  background:
+    linear-gradient(
+      115deg,
+      rgba(var(--experience-accent), 0.065),
+      transparent 42%
+    ),
+    rgba(15, 16, 21, 0.84);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 26px 80px rgba(0, 0, 0, 0.24);
+
+  backdrop-filter: blur(18px);
+}
+
+.experience-card__shell::before {
+  position: absolute;
+  top: -35%;
+  right: -10%;
+
+  width: 38%;
+  height: 70%;
+  border-radius: 50%;
+
+  background: rgba(var(--experience-accent), 0.12);
+  filter: blur(72px);
+
+  content: "";
+  pointer-events: none;
+}
+
+.experience-card__topbar {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+
+  padding:
+    clamp(1.8rem, 3vw, 2.6rem)
+    clamp(1.6rem, 3vw, 2.6rem)
+    1.8rem;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.experience-card__identity {
+  min-width: 0;
+}
+
+.experience-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.experience-card__type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  color: rgb(var(--experience-accent));
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-card__type svg {
+  width: 0.78rem;
+  height: 0.78rem;
+}
+
+.experience-card__duration {
+  color: #858690;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.045em;
+}
+
+.experience-card__role {
+  max-width: 760px;
+  margin-top: 1rem;
+
+  color: #f1eee8;
+
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1.85rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.experience-card__company-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.experience-card__company {
+  color: #d7d3cc;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.experience-card__ownership {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.8rem;
+
+  border: 1px solid rgba(var(--experience-accent), 0.26);
+  border-radius: 999px;
+
+  padding: 0.36rem 0.72rem;
+
+  color: rgb(var(--experience-accent));
+  background: rgba(var(--experience-accent), 0.055);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.055em;
+}
+
+.experience-card__index-mark {
+  color: rgba(var(--experience-accent), 0.12);
+  font-family: "Inter", sans-serif;
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.72;
+  user-select: none;
+}
+
+.experience-card__body {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: clamp(2rem, 4vw, 4rem);
+
+  padding:
+    clamp(1.8rem, 3vw, 2.6rem)
+    clamp(1.6rem, 3vw, 2.6rem);
+}
+
+.experience-card__summary {
+  min-width: 0;
+}
+
+.experience-card__description {
+  max-width: 700px;
+  color: #a6a7af;
+  font-size: 0.98rem;
+  line-height: 1.82;
+}
+
+.experience-card__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.65rem;
+}
+
+.experience-card__technology {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+
+  border: 1px solid rgba(var(--experience-accent), 0.22);
+  border-radius: 999px;
+
+  padding: 0.43rem 0.86rem;
+
+  color: #b7b4bd;
+  background: rgba(var(--experience-accent), 0.025);
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.67rem;
+  line-height: 1;
+}
+
+.experience-card__impact {
+  min-width: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.065);
+  padding-left: clamp(1.5rem, 3vw, 2.6rem);
+}
+
+.experience-card__impact-label {
+  color: rgb(var(--experience-accent));
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.experience-card__achievements {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.experience-card__achievement {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+
+  color: #c0c1c7;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.experience-card__achievement-icon {
+  display: inline-flex;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0.15rem;
+
+  border: 1px solid rgba(var(--experience-accent), 0.68);
+  border-radius: 999px;
+
+  color: rgb(var(--experience-accent));
+  background: rgba(var(--experience-accent), 0.07);
+}
+
+.experience-card__achievement-icon svg {
+  width: 0.64rem;
+  height: 0.64rem;
+  stroke-width: 2.6;
+}
+
+.experience-card__footer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+
+  padding:
+    1.15rem
+    clamp(1.6rem, 3vw, 2.6rem);
+
+  color: #797a83;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.experience-card__footer svg {
+  width: 1rem;
+  height: 1rem;
+  color: rgb(var(--experience-accent));
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .experience-card__body {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card__impact {
+    border-top: 1px solid rgba(255, 255, 255, 0.065);
+    border-left: 0;
+    padding-top: 1.75rem;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .experience-chapter {
+    padding:
+      5rem
+      1rem
+      6rem;
+  }
+
+  .experience-chapter__title {
+    font-size: clamp(2.7rem, 13vw, 4rem);
+  }
+
+  .experience-chapter__list {
+    gap: 1.5rem;
+    padding-left: 0;
+  }
+
+  .experience-chapter__list::before,
+  .experience-card__node {
+    display: none;
+  }
+
+  .experience-card__topbar {
+    padding: 1.4rem;
+  }
+
+  .experience-card__index-mark {
+    display: none;
+  }
+
+  .experience-card__body {
+    gap: 1.7rem;
+    padding: 1.4rem;
+  }
+
+  .experience-card__footer {
+    align-items: flex-start;
+    padding: 1rem 1.4rem;
+  }
+
+  .experience-card__footer span {
+    max-width: 85%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card__shell {
+    transition: none;
+  }
+}
+.experience-chapter {
+  position: relative;
+}
+
+.experience-chapter__container {
+  width: min(100%, 1240px);
+  margin-inline: auto;
+}
+
+.experience-chapter__list {
+  width: 100%;
+  margin-top: clamp(4.5rem, 8vw, 7rem);
+}
+
+@media (min-width: 1101px) {
+  .experience-chapter {
+    padding-left: calc(var(--chapter-rail-x) * 2);
+    padding-right: clamp(2rem, 5vw, 5rem);
+  }
+}
+
+@media (max-width: 1100px) {
+  .experience-chapter {
+    padding-inline: 1.5rem;
+  }
+
+  .experience-chapter__container {
+    width: min(100%, 960px);
+  }
+}
+.experience-card__role strong {
+  color: #f1eee8;
+  font-weight: 700;
+}
+
+.experience-card__role > span {
+  color: #aaa7a5;
+  font-weight: 450;
+}
+
+.experience-card__type-text strong {
+  color: inherit;
+  font-weight: 700;
+}
+
+.experience-card__type-text > span {
+  font-weight: 450;
+}

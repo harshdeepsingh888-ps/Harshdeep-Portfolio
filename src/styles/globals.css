@@ -506,6 +506,7 @@ html {
   z-index: 2;
   margin-top: -2px;
   overflow: hidden;
+  overflow-x: clip;
   isolation: isolate;
 
   background:
@@ -988,11 +989,28 @@ html {
       1rem;
   }
 
-  .work-chapter__ambient {
+   .work-chapter__ambient {
     top: 2rem;
-    right: -14rem;
-    opacity: 0.28;
+    right: -4rem;
+    width: 280px;
+    height: 180px;
+    opacity: 0.16;
   }
+  .work-chapter__orbit--one {
+    width: 120px;
+    height: 48px;
+  }
+
+  .work-chapter__orbit--two {
+    width: 200px;
+    height: 80px;
+  }
+
+  .work-chapter__orbit--three {
+    width: 270px;
+    height: 108px;
+  }
+}
 
   .work-chapter__title {
     font-size: clamp(2.8rem, 14vw, 4.2rem);
@@ -1029,7 +1047,7 @@ html {
   .project-showcase__image {
     min-height: 185px;
   }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
   .project-showcase__image,
@@ -1287,5 +1305,87 @@ html {
 
   .work-chapter__projects {
     max-width: 100%;
+  }
+}
+@media (max-width:1050px){
+
+.project-showcase__content,
+.project-showcase__visual{
+    transform:none;
+    width:100%;
+}
+
+.project-showcase{
+    justify-items:stretch;
+}
+
+}
+@media (max-width: 720px) {
+  .work-chapter {
+    padding:
+      clamp(5rem, 18vw, 7rem)
+      1rem;
+  }
+
+  .work-chapter__container {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .work-chapter__projects {
+    width: 100%;
+    max-width: none;
+  }
+
+  .project-showcase {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+
+    gap: 2rem;
+    min-height: auto;
+    border-radius: 0.85rem;
+    padding: 1.35rem;
+
+    box-sizing: border-box;
+  }
+
+  .project-showcase__content,
+  .project-showcase__visual {
+    width: 100%;
+    min-width: 0;
+    transform: none;
+  }
+
+  .project-showcase__visual {
+    justify-self: stretch;
+  }
+
+  .project-showcase__image-frame {
+    width: 100%;
+    min-height: 190px;
+  }
+
+  .project-showcase__image {
+    width: 100%;
+    min-height: 185px;
+  }
+
+  .project-showcase__title {
+    font-size: clamp(2.45rem, 12vw, 3.4rem);
+  }
+
+  .project-showcase__description {
+    max-width: none;
+    font-size: 0.93rem;
+  }
+
+  .project-showcase__highlights {
+    grid-template-columns: 1fr;
   }
 }
