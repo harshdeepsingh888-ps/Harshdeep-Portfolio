@@ -65,6 +65,7 @@ export function ToolboxCard({ category }: ToolboxCardProps) {
           ))}
         </div>
       </div>
+      
     </article>
   );
 }
