@@ -13,10 +13,14 @@ export function ToolboxChapterRail() {
 
       <span className="toolbox-rail__connector" />
 
-      <div className="toolbox-rail__scroll">
-        <span className="toolbox-rail__scroll-text">Scroll</span>
-        <span className="toolbox-rail__scroll-arrow">↓</span>
-      </div>
+      <a
+  href="#contact"
+  className="toolbox-rail__scroll"
+  aria-label="Scroll to contact section"
+>
+  <span className="toolbox-rail__scroll-text">Scroll</span>
+  <span className="toolbox-rail__scroll-arrow">↓</span>
+</a>
     </aside>
   );
 }

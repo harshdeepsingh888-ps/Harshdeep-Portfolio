@@ -1,8 +1,6 @@
 import "@fontsource/bebas-neue/400.css";
 
 import {
-  ArrowDown,
-  ArrowDownRight,
   ArrowUpRight,
 } from "lucide-react";
 
@@ -123,8 +121,8 @@ export function OpeningChapter() {
           <nav className="opening-nav" aria-label="Primary navigation">
             <div className="opening-nav-links">
               <a href="#work">Work</a>
-              <a href="#journey">Journey</a>
-              <a href="#about">About</a>
+              <a href="#experience">Journey</a>
+              <a href="#toolbox">About</a>
               <a href="#contact">Contact</a>
             </div>
 
@@ -211,7 +209,7 @@ export function OpeningChapter() {
                 ))}
               </ul>
 
-              <a href="#gatepulse">
+              <a href="/work/gatepulse">
                 View case study
                 <ArrowUpRight aria-hidden="true" />
               </a>
@@ -220,12 +218,12 @@ export function OpeningChapter() {
         </main>
 
         <a
-  href="#work"
-  className="opening-scroll"
-  aria-label="Scroll to selected engineering work"
->
-  <span aria-hidden="true">↓</span>
-</a>
+          href="#work"
+          className="opening-scroll"
+          aria-label="Scroll to selected engineering work"
+        >
+          <span aria-hidden="true">↓</span>
+        </a>
       </div>
     </section>
   );

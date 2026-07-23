@@ -31,6 +31,13 @@ export function ToolboxCard({ category }: ToolboxCardProps) {
         <div className="toolbox-card__icon">
           <Icon size={34} strokeWidth={1.65} />
         </div>
+        <div
+  className={clsx(
+    "toolbox-card__motif",
+    `toolbox-card__motif--${category.id}`
+  )}
+  aria-hidden="true"
+/>
 
         <span className="toolbox-card__visual-node" />
       </div>

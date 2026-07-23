@@ -77,7 +77,7 @@ export function WorkChapter() {
             ]}
             image="/images/projects/ai-voice-agent/system-architecture.png"
             imageAlt="AI Voice Agent system architecture"
-            caseStudyLink="/projects/ai-voice-agent"
+            caseStudyLink="/work/ai-voice-agent"
             accent="orange"
           />
         </div>
