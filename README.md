@@ -52,7 +52,7 @@ Production-focused Software Engineering Portfolio showcasing backend systems, AI
 ## Mobile Experience
 
 <p align="center">
-<img src="README-assets/mobile-home.jpg" width="320"/>
+<img src="README-assets/mobile-home.jpeg" width="320"/>
 </p>
 
 ---
