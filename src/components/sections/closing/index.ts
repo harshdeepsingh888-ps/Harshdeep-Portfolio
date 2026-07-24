@@ -1,1 +1,1 @@
-import { ClosingChapter } from "@/components/sections/closing/closing-chapter";
+export { ClosingChapter } from "./closing-chapter";

@@ -95,7 +95,7 @@ export function ClosingActions() {
 
           <a
             className="closing__professional-link"
-            href="/resume.pdf"
+            href="/Harshdeep_Singh_Resume.pdf"
             download
           >
             <span>
