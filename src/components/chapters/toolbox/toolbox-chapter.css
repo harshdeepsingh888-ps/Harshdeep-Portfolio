@@ -369,42 +369,85 @@
 }
 
 @media (max-width: 640px) {
+
   .toolbox-chapter {
-    padding-inline: 1.25rem;
+    padding:
+      4.5rem
+      1.5rem
+      5.5rem;
+
+    grid-template-columns: 1fr;
   }
 
+  /* -------- PERFECT LEFT ALIGNMENT -------- */
+
+  .toolbox-chapter__container,
+  .toolbox-chapter__header,
+  .toolbox-chapter .work-chapter__eyebrow,
+  .toolbox-chapter .toolbox-chapter__title,
+  .toolbox-chapter .work-chapter__description {
+
+    padding-left: 0;
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  /* -------- TITLE -------- */
+
   .toolbox-chapter .toolbox-chapter__title {
-  font-size: clamp(2.2rem, 10vw, 3.4rem);
-  line-height: 1.05;
-}
+
+    font-size: clamp(2.65rem, 8vw, 3.5rem);
+
+    line-height: 1.05;
+
+    letter-spacing: -0.045em;
+  }
+
+  .toolbox-chapter__title-primary {
+
+    white-space: nowrap;
+
+  }
+
+  .toolbox-chapter__title-accent {
+
+    white-space: nowrap;
+
+  }
+
+  /* -------- DESCRIPTION -------- */
+
+  .toolbox-chapter .work-chapter__description {
+
+    margin-top: 1.4rem;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+    color: #b8b8b8;
+  }
+
+  /* -------- CARDS -------- */
 
   .toolbox-blueprint {
+
     gap: 1rem;
-    margin-top: 2.5rem;
+
+    margin-top: 2.75rem;
+
   }
 
   .toolbox-blueprint__supporting {
+
     gap: 1rem;
+
   }
 
   .toolbox-blueprint .toolbox-card {
+
     min-height: auto;
+
   }
-}
-.toolbox-network {
-  position: absolute;
-  inset: 0;
 
-  width: 100%;
-  height: 100%;
-
-  pointer-events: none;
-  z-index: 0;
-
-  opacity: 0.55;
-}
-
-.toolbox-blueprint > *:not(.toolbox-network) {
-  position: relative;
-  z-index: 1;
 }
