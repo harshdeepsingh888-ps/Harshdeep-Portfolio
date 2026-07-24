@@ -3,7 +3,7 @@ import { WorkChapterRail } from "./work-chapter-rail";
 
 export function WorkChapter() {
   return (
-    <section id="work" className="work-chapter">
+    <section className="work-chapter">
       <WorkChapterRail />
 
       <div className="work-chapter__ambient" aria-hidden="true">
@@ -32,7 +32,7 @@ export function WorkChapter() {
           </p>
         </header>
 
-        <div className="work-chapter__projects">
+        <div id="work" className="work-chapter__projects">
           <ProjectShowcase
             eyebrow="Featured System"
             title="GatePulse"
@@ -58,7 +58,7 @@ export function WorkChapter() {
           />
 
           <ProjectShowcase
-            eyebrow="AI SYSTEMS"
+            eyebrow="AI Systems"
             title="AI Voice Agent"
             description="A modular voice-first assistant that understands spoken commands, reasons with Gemini, executes desktop tools, maintains conversation context, and generates natural voice responses."
             technologies={[

@@ -1,8 +1,7 @@
 import "@fontsource/bebas-neue/400.css";
 
-import {
-  ArrowUpRight,
-} from "lucide-react";
+import type { MouseEvent } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 import "./opening-chapter.css";
 
@@ -63,6 +62,30 @@ function MailMark() {
 }
 
 export function OpeningChapter() {
+  const scrollToSection = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    event.preventDefault();
+
+    const targetSection = document.getElementById(sectionId);
+
+    if (!targetSection) {
+      console.error(`Section with id "${sectionId}" was not found.`);
+      return;
+    }
+
+    const targetPosition =
+      targetSection.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+      top: targetPosition,
+      behavior: "smooth",
+    });
+
+    window.history.replaceState(null, "", `#${sectionId}`);
+  };
+
   return (
     <section id="opening" className="opening">
       <div aria-hidden="true" className="opening-grid">
@@ -114,19 +137,50 @@ export function OpeningChapter() {
 
       <div className="opening-container">
         <header className="opening-header">
-          <a href="#opening" className="opening-logo">
+          <a
+            href="#opening"
+            className="opening-logo"
+            onClick={(event) => scrollToSection(event, "opening")}
+          >
             HS
           </a>
 
           <nav className="opening-nav" aria-label="Primary navigation">
             <div className="opening-nav-links">
-              <a href="#work">Work</a>
-              <a href="#experience">Journey</a>
-              <a href="#toolbox">About</a>
-              <a href="#contact">Contact</a>
+              <a
+                href="#work"
+                onClick={(event) => scrollToSection(event, "work")}
+              >
+                Work
+              </a>
+
+              <a
+                href="#experience"
+                onClick={(event) => scrollToSection(event, "experience")}
+              >
+                Journey
+              </a>
+
+              <a
+                href="#toolbox"
+                onClick={(event) => scrollToSection(event, "toolbox")}
+              >
+                About
+              </a>
+
+              <a
+                href="#contact"
+                onClick={(event) => scrollToSection(event, "contact")}
+              >
+                Contact
+              </a>
             </div>
 
-            <a href="#work" className="opening-explore-link">
+            <a
+              href="#work"
+              className="opening-explore-link"
+              onClick={(event) => scrollToSection(event, "work")}
+            >
               Explore work
               <ArrowUpRight aria-hidden="true" />
             </a>
@@ -158,7 +212,11 @@ export function OpeningChapter() {
             </div>
 
             <div className="opening-actions">
-              <a href="#work" className="opening-primary-action">
+              <a
+                href="#work"
+                className="opening-primary-action"
+                onClick={(event) => scrollToSection(event, "work")}
+              >
                 View engineering work
                 <ArrowUpRight aria-hidden="true" />
               </a>
@@ -175,7 +233,7 @@ export function OpeningChapter() {
             </div>
           </div>
 
-          <article id="work" className="featured-project">
+          <article className="featured-project">
             <header className="featured-project-header">
               <div>
                 <p className="featured-project-label">Featured system</p>
@@ -188,9 +246,7 @@ export function OpeningChapter() {
                 </p>
               </div>
 
-              <span className="featured-project-status">
-                Production MVP
-              </span>
+              <span className="featured-project-status">Production MVP</span>
             </header>
 
             <div className="featured-project-preview">
@@ -221,6 +277,7 @@ export function OpeningChapter() {
           href="#work"
           className="opening-scroll"
           aria-label="Scroll to selected engineering work"
+          onClick={(event) => scrollToSection(event, "work")}
         >
           <span aria-hidden="true">↓</span>
         </a>
