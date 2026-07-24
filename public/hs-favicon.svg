@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">HS monogram</title>
+  <desc id="desc">A bold, elongated, tightly fused HS monogram in copper orange on a graphite background.</desc>
+
+  <rect width="128" height="128" rx="20" fill="#0D0E11"/>
+
+  <!-- Approved-style geometric HS monogram -->
+  <path
+    fill="#E57442"
+    d="
+      M24 18H38V56H58V18H98V48H84V32H72V47L98 73V110H58V82H72V96H84V80L58 54V70H38V110H24V18Z
+    "
+  />
+</svg>
