@@ -1,0 +1,10 @@
+# Never line-ending-convert binary assets
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.mp4 binary
+*.woff2 binary
+*.ttf binary
