@@ -1,1 +1,0 @@
-export { ClosingChapter } from "./closing-chapter";

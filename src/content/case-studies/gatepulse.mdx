@@ -1,0 +1,44 @@
+## The problem
+
+Every API eventually needs the same layer in front of it: who is calling, how often they're allowed to, and what happened when they did. GatePulse puts that layer in one place — a gateway in front of your services, and a dashboard to run it.
+
+## What it does
+
+- Admins sign in with a JWT; the admin password is hashed with bcrypt.
+- API keys can be created, listed, regenerated and revoked. They're stored as a SHA-256 hash plus a short prefix for identification.
+- Every key is rate-limited with a token bucket.
+- Every request is logged, and six analytics views cover the overview, top keys, recent requests, usage trend, errors and latency.
+- Requests are validated with Zod, logged with Pino, protected with Helmet, and errors are handled centrally.
+
+<Video src="/images/projects/gatepulse/demo.mp4" caption="A walkthrough of the dashboard." />
+
+## Architecture
+
+The gateway is Express with routes, controllers, services and middleware kept separate, and Prisma over PostgreSQL with three models: `Admin`, `ApiKey` and `RequestLog`. The dashboard is React and TypeScript with TanStack Query, Recharts and a command palette. Docker Compose runs Postgres, the backend and an nginx-served frontend together. In production the frontend is on Vercel, the backend on Render and the database on Neon.
+
+<Figure
+  src="/images/projects/gatepulse/Architecture.webp"
+  alt="GatePulse architecture diagram"
+  url="gatepulse/architecture"
+  width={1536}
+  height={1024}
+  caption="Gateway, dashboard and data flow."
+/>
+
+## What I'd change now
+
+<Callout label="Rate limiter">
+The token buckets live in an in-process `Map`. That's fast and simple, but limits are per instance — run two gateway instances and a client gets twice its quota. Moving bucket state into a shared store like Redis is the fix.
+</Callout>
+
+- **Tests.** GatePulse doesn't have an automated test suite yet. Every backend I've built since does — Devforge has 216 tests.
+- **A demo account.** The live dashboard sits behind a login with no public credentials. A read-only demo mode would let anyone try it.
+
+<Figure
+  src="/images/projects/gatepulse/api-keys-screen.webp"
+  alt="GatePulse API key management screen"
+  url="gate-pulse.vercel.app/api-keys"
+  width={1899}
+  height={908}
+  caption="Key management: create, regenerate and revoke."
+/>

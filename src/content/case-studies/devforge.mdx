@@ -1,0 +1,59 @@
+## The problem
+
+Most teams keep work items, architecture decisions, code and deployments in different tools, and the links between them live in people's heads. Devforge models them as one connected system: a work item links to the decision record that shaped it, the commits that implemented it, and the pipeline run that shipped it.
+
+It's a personal project, built solo, and the largest codebase I've written — about 21,000 lines of TypeScript across an API and a web app.
+
+## Architecture
+
+An npm-workspaces monorepo with two apps:
+
+- **`apps/api`** — Fastify, Prisma and PostgreSQL. Seven domain modules (auth, workspaces, work management, architecture, git, CI/CD, projects), each split into repository, service and route layers.
+- **`apps/web`** — React and Vite, with auth, workspace and project gates, a work-stream view and a work-item inspector.
+
+The API serves Swagger/OpenAPI docs at `/docs`, uses Helmet and rate limiting, and has separate `/health` and `/ready` endpoints. Docker Compose runs PostgreSQL locally and a Dockerfile containerises the API. There's also Terraform for an AWS setup — VPC, RDS PostgreSQL behind RDS Proxy, Secrets Manager and CloudWatch alarms — written, but not applied yet.
+
+<Figure
+  src="/images/projects/devforge/board.webp"
+  alt="Devforge work stream board with Backlog, In Progress and Done columns"
+  url="devforge · local build"
+  width={1600}
+  height={1000}
+  caption="The work stream, running locally with sample data — Devforge isn't publicly deployed yet."
+/>
+
+## Decisions worth explaining
+
+### Every repository has two implementations
+
+Each module defines a repository interface with an in-memory implementation and a Prisma one. Services only ever see the interface. That's what makes a large test suite practical: service logic runs against in-memory repositories in milliseconds, and the Prisma implementations are tested on their own.
+
+### Invitation tokens are never stored
+
+Workspace invitations use a random 32-byte token. The raw token is handed back once so it can be sent to the invitee; the database only keeps its SHA-256 hash, and every response goes through `toSafeInvitation`, which strips the hash before anything leaves the service.
+
+```ts
+export function generateRawToken(): string {
+  return randomBytes(32).toString("hex");
+}
+
+export function hashToken(rawToken: string): string {
+  return createHash("sha256").update(rawToken).digest("hex");
+}
+```
+
+An invitation can expire, be revoked, or be accepted once — and each failure (expired, revoked, already accepted, email mismatch) is its own typed error instead of a generic `400`.
+
+### Sessions that can actually end
+
+Auth issues JWT access tokens with refresh tokens backed by persisted sessions, so a logout can end a session on the server instead of waiting for a token to expire.
+
+## By the numbers
+
+- **67 commits** and 3 merged pull requests — auth hardening, web logout, invitations
+- **216 test cases** across 40 test files, run with `node:test`
+- **63 HTTP routes**, **27 Prisma models**, 7 migrations
+
+## What's next
+
+The README promises the full loop, through incidents and DORA metrics. Today, deployment frequency and lead time exist as a service method but aren't exposed by the API, and there's no incident model yet. Those, a CI pipeline and a public deployment are next.

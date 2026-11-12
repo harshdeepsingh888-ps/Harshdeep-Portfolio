@@ -1,0 +1,48 @@
+.frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0e0e0f;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--mut);
+  text-transform: none;
+  flex: 0 0 auto;
+}
+
+.bar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #2a2a2b;
+}
+
+.bar span {
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.view img {
+  display: block;
+  width: 100%;
+  height: auto;
+}

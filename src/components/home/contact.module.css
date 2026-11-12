@@ -1,0 +1,113 @@
+.contact {
+  position: relative;
+  z-index: 2;
+  padding: clamp(100px, 12vw, 180px) var(--pad) clamp(70px, 8vw, 120px);
+  padding-left: calc(var(--pad) + var(--rail));
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(64px, 14vw, 280px);
+  line-height: 0.84;
+  letter-spacing: -0.05em;
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--fg);
+}
+
+.grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  align-items: end;
+  margin-top: clamp(48px, 6vw, 96px);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.note {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.email {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(17px, 2.6vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-2);
+  align-self: flex-start;
+  overflow-wrap: anywhere;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.email:hover {
+  color: var(--acc);
+  border-color: var(--acc);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.magnet {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(140px, 12vw, 200px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--acc);
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.1;
+  will-change: transform;
+  transition: background 0.3s;
+}
+
+.magnet:hover {
+  background: var(--acc-2);
+}
+
+.magnet span {
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .email {
+    font-size: clamp(17px, 4.9vw, 30px);
+  }
+  .magnet {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-self: start;
+  }
+}

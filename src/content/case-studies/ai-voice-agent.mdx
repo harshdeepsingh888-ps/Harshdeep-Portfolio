@@ -1,0 +1,35 @@
+## Context
+
+Built during my internship at Zeber, where I was the sole engineer on AI automation. The goal: a hands-free assistant that turns a spoken request into an action on the machine — and asks a follow-up question when something is missing.
+
+## The pipeline
+
+1. **Listen.** WebRTC voice-activity detection finds where speech starts and ends, so only what was said gets recorded.
+2. **Transcribe.** OpenAI Whisper (the `base` model, running locally on CPU) turns the audio into text, which is then normalised.
+3. **Plan.** Gemini — `gemini-2.5-flash` by default — reads the request and the conversation so far, chooses a tool and its arguments, and the plan is validated before anything runs.
+4. **Act and answer.** A tool registry dispatches the call, and Edge TTS speaks the result.
+
+<Figure
+  src="/images/projects/ai-voice-agent/system-architecture.webp"
+  alt="AI Voice Agent architecture: speech to text, AI orchestration, tool execution and conversation memory"
+  url="ai-voice-agent/architecture"
+  width={1672}
+  height={941}
+  caption="Speech in, plan, tool call, speech out — with memory alongside."
+/>
+
+## Tools are plug-ins
+
+Every tool subclasses a `BaseTool` and registers with a tool manager. The planner only ever sees the registry, so adding a capability doesn't touch the conversation logic. Five tools ship today: weather, a calculator, and launchers for Notepad, Chrome and the Windows calculator.
+
+## Memory and follow-ups
+
+The agent keeps conversation memory and tracks pending requests. Ask for the weather without naming a city and it asks which city — then finishes the original request when you answer, instead of starting over.
+
+## Interfaces and tests
+
+The same agent is exposed through a FastAPI `/chat` endpoint and a voice CLI. Fifteen tests cover the tool registry, the tool manager, the calculator and weather tools, and the agent service.
+
+## Limits
+
+It runs locally: the app launchers are Windows-specific and there's no hosted demo. Making the tools cross-platform and adding a browser client on top of the existing API are the obvious next steps.

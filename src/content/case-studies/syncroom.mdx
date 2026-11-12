@@ -1,0 +1,44 @@
+## The problem
+
+Watch parties fail in a familiar way: one person seeks, someone else's player buffers, and within a minute everyone is watching a different second of the video. If every client is a source of truth, there is no truth.
+
+## The design: the server owns playback
+
+In SyncRoom, clients never change playback directly. They send a command — play, pause, seek, change video — and the server checks it against the sender's role, updates the room's state, and broadcasts a playback snapshot to everyone. Clients simply converge on the snapshot.
+
+- Late joiners receive the current snapshot and start in sync.
+- Each client compares itself with the room's timeline and corrects when it drifts more than **0.75 s**.
+- Rooms have Host, Moderator and Participant roles; hosts can promote, demote, remove participants and hand over the room.
+- In-room YouTube search uses the Data API v3, with results cached on the server.
+
+<Figure
+  src="/images/projects/syncroom/syncroom-architecture.webp"
+  alt="SyncRoom architecture: clients send commands, the server broadcasts playback snapshots"
+  url="syncroom/architecture"
+  width={1536}
+  height={1024}
+  caption="Clients send commands; only the server changes state."
+/>
+
+## Typed contracts on both ends
+
+Client and server share typed event contracts — 20 namespaced Socket.IO events — so renaming a payload field is a compile error, not a silent desync. Commands are validated with Zod at the boundary, and the HTTP side runs on Express 5 with Helmet and Pino.
+
+## Deliberate limits
+
+<Callout label="Trade-off">
+There are no accounts and no database: rooms live in memory and disappear when the last person leaves. That keeps the system small and private, at the cost of horizontal scaling — two server instances would each hold their own rooms. A shared adapter such as Redis would be the step to take if it ever needs more than one instance.
+</Callout>
+
+## Stack and deployment
+
+React 19 and Vite on Vercel; Node, Express 5 and Socket.IO on Render, split into domain, repository and service layers. 24 commits.
+
+<Figure
+  src="/images/projects/syncroom/room-screen.webp"
+  alt="A SyncRoom room with the shared player and participant list"
+  url="syncroom-gamma.vercel.app"
+  width={1901}
+  height={912}
+  caption="A room in progress: shared player, participants and roles."
+/>

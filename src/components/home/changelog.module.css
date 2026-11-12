@@ -1,0 +1,129 @@
+.section {
+  position: relative;
+  z-index: 2;
+  padding: clamp(90px, 10vw, 160px) var(--pad);
+  padding-left: calc(var(--pad) + var(--rail));
+  background-color: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(44px, 6vw, 110px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+
+.log {
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  background: rgba(10, 10, 11, 0.92);
+  padding: 10px 0;
+  max-width: 1200px;
+}
+
+.commit {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 130px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 22px 26px 22px 18px;
+}
+
+.graph {
+  position: relative;
+  align-self: stretch;
+}
+
+.graph::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: -22px;
+  bottom: -22px;
+  width: 2px;
+  background: var(--line-2);
+}
+
+.commit:first-child .graph::before {
+  top: 14px;
+}
+
+.commit:last-child .graph::before {
+  bottom: calc(100% - 14px);
+}
+
+.graph i {
+  position: absolute;
+  left: 9px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--acc);
+  background: var(--bg);
+}
+
+.commit[data-head="true"] .graph i {
+  background: var(--acc);
+  box-shadow: 0 0 18px rgba(255, 91, 31, 0.8);
+}
+
+.date {
+  padding-top: 4px;
+  text-transform: none;
+}
+
+.body h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 1.8vw, 26px);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.body p {
+  color: var(--fg-2);
+  line-height: 1.55;
+  max-width: 760px;
+}
+
+.ref {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 1px 7px;
+  border-radius: 4px;
+  vertical-align: 4px;
+  text-transform: none;
+}
+
+.ref[data-tone="head"] {
+  background: rgba(61, 220, 151, 0.12);
+  color: var(--ok);
+}
+
+.ref[data-tone="tag"] {
+  background: rgba(255, 91, 31, 0.13);
+  color: var(--acc-2);
+}
+
+@media (max-width: 860px) {
+  .commit {
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 18px 16px 18px 6px;
+  }
+  .date {
+    grid-column: 2;
+    padding-top: 0;
+  }
+  .body {
+    grid-column: 2;
+  }
+  .graph {
+    grid-row: 1 / span 2;
+  }
+}

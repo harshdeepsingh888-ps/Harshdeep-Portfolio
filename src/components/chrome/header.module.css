@@ -1,0 +1,105 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto auto;
+  gap: 28px;
+  align-items: start;
+  padding: var(--pad);
+  padding-bottom: 0;
+  mix-blend-mode: difference;
+  color: #fff;
+  transition: transform 0.7s var(--ease);
+}
+
+.header[data-hidden="true"] {
+  transform: translateY(-140%);
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.logo sup {
+  font-size: 10px;
+  margin-left: 2px;
+}
+
+.meta {
+  line-height: 1.55;
+  transition: opacity 0.4s var(--ease);
+}
+
+/* Once the page scrolls, drop the meta columns so they never collide with content. */
+.header[data-scrolled="true"] .meta {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav {
+  display: flex;
+  gap: 22px;
+  padding-top: 1px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: -6px;
+}
+
+.cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  transition: border-color 0.25s;
+}
+
+.cmd:hover {
+  border-color: #fff;
+}
+
+.cv {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-weight: 500;
+}
+
+@media (max-width: 1080px) {
+  .header {
+    grid-template-columns: 1fr auto auto;
+  }
+  .meta:nth-of-type(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .header {
+    grid-template-columns: 1fr auto;
+  }
+  .meta,
+  .nav {
+    display: none;
+  }
+  .actions {
+    gap: 10px;
+  }
+}

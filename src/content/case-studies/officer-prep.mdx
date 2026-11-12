@@ -1,0 +1,41 @@
+## The problem
+
+India's officer-level exams — CDS, AFCAT, CAPF AC, Coast Guard AC and UPSC CSE — overlap heavily, but each has its own pattern and syllabus. Preparing for several at once means juggling separate planners, question banks and past papers. Officer Prep puts them in one app that plans the day, drills topics in each exam's real format, and works offline on a phone.
+
+## What it does
+
+- A dashboard with exam countdowns, a readiness score, streaks and a daily mission
+- Study paths for each exam, with topic guides and status tracking
+- Practice in every shape: Quick 10, weekly quizzes, sectional tests, and full mocks in each paper's pattern
+- Official UPSC past papers on an on-screen OMR sheet, scored against the answer key
+- Spaced repetition (SM-2 style), a mistake notebook and flashcard decks
+- SSB psychological tests — WAT, SRT, TAT, PPDT, SD and Lecturette — with their real timings
+- Optional Google Drive backup; everything else stays in the browser
+
+<Figure
+  src="/images/projects/officer-prep/cover.webp"
+  alt="Officer Prep's Today dashboard"
+  url="harshdeepsingh888-ps.github.io/officer-prep"
+  caption="The Today dashboard on the live site."
+/>
+
+## Architecture
+
+Client-only, on purpose. React, TypeScript and Vite, deployed to GitHub Pages, with all user data in IndexedDB — no accounts, no server to keep alive, and nothing personal leaves the device. Content lives in typed data modules, so a malformed question fails the type check instead of rendering wrong. It installs as a PWA and shows an update prompt when a new version ships.
+
+Two jobs run on GitHub Actions:
+
+1. Every push to `main` runs the tests, builds, and only then deploys.
+2. A scheduled job refreshes current-affairs headlines twice a day, at 07:00 and 19:00 IST.
+
+## Questions that don't repeat
+
+About 510 questions are written by hand. On top of those, 61 generator templates — 42 for maths, 19 for reasoning — produce fresh variants, so a quick drill can't be passed by memorising last week's answers.
+
+## Testing
+
+There are 112 unit-test declarations in Vitest and 27 browser tests in Playwright. Many are parameterised across every exam, generator and page — the regression pass that introduced them ran 770 unit and 97 browser tests, and fixed 7 bugs along the way.
+
+<Callout label="Why tests gate deploys">
+Content bugs in a study app are silent: a wrong answer key just teaches the wrong thing. Making the deploy depend on the test job means a broken generator can't reach the live site.
+</Callout>

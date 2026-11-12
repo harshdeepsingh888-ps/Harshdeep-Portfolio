@@ -1,301 +1,52 @@
-<div align="center">
+# Harshdeep Singh — portfolio
 
-# Harshdeep Singh
+Backend and AI engineer. Technical intern at Neubitat, B.Tech IT at BVCOE (’28).
 
-### Building intelligent software, one system at a time.
+**[Live site](https://harshdeep-portfolio-tau.vercel.app)** · [Résumé](public/Harshdeep_Singh_Resume.pdf) · [LinkedIn](https://www.linkedin.com/in/harshdeep-singh-073b02320/) · [GitHub](https://github.com/harshdeepsingh888-ps)
 
-Production-focused Software Engineering Portfolio showcasing backend systems, AI applications, and developer tools.
+![Home page: a WebGL particle field behind the name Harshdeep Singh](README-assets/hero.webp)
 
-<p>
-  <a href="https://harshdeep-portfolio-tau.vercel.app/">🌐 Live Portfolio</a> •
-  <a href="Harshdeep_Singh_Resume.pdf">📄 Resume</a> •
-  <a href="https://www.linkedin.com/in/harshdeep-singh-073b02320/">💼 LinkedIn</a> •
-  <a href="https://github.com/harshdeepsingh888-ps">💻 GitHub</a>
-</p>
+## What's here
 
-</div>
+- **Home** — a WebGL hero, a pinned horizontal reel of five featured projects with real numbers (tests, routes, models), a node graph that wires each project to the stack it was built with, and experience written as a git log.
+- **Case studies** — `/work/[slug]`, written in MDX: problem, architecture, decisions and trade-offs, what's next.
+- **Project index** — `/work`, every project with filters and a hover preview.
+- **⌘K / Ctrl+K** — a command menu to jump to any section or project, copy the email address or open the résumé.
 
----
+![Devforge case study page](README-assets/case-study.webp)
 
-# Portfolio Preview
+## Stack
 
-## Desktop Experience
+Next.js 16 (App Router, static generation) · React 19 · TypeScript · CSS Modules · three.js (custom GLSL shader) · GSAP + ScrollTrigger · Lenis · MDX · cmdk · `next/og` for social cards.
 
-![Hero](README-assets/hero-desktop.png)
+Performance and accessibility choices:
 
----
+- three.js loads lazily, renders at most 2× DPR, uses fewer particles on phones, and stops rendering once the hero is off-screen.
+- `prefers-reduced-motion` turns off smooth scrolling, the intro, the pinned reel and the particle animation (one still frame is drawn instead).
+- All content is server-rendered HTML; animation is progressive. If scripts fail, the intro hides itself after a few seconds.
+- Images are WebP, served through `next/image`.
 
-## Engineering Systems
+## Editing content
 
-![Engineering Systems](README-assets/work-section.png)
+Everything lives in `src/content`:
 
----
+| File | What it controls |
+| --- | --- |
+| `site.ts` | Name, links, hero copy, stats, the About statement, the experience log |
+| `projects.ts` | Every project: summary, metrics, stack, links, cover image, and the skills used by the stack graph |
+| `case-studies/*.mdx` | Long-form case studies (one per project with `caseStudy: true`) |
 
-## Professional Experience
+Adding a project means one new object in `projects.ts`, plus an `.mdx` file if it gets a case study.
 
-![Experience](README-assets/experience-section.png)
-
----
-
-## Technology Toolbox
-
-![Toolbox](README-assets/toolbox-section.png)
-
----
-
-## Contact
-
-![Contact](README-assets/contact-section.png)
-
----
-
-## Mobile Experience
-
-<p align="center">
-<img src="README-assets/mobile-home.jpeg" width="320"/>
-</p>
-
----
-
-# About
-
-This repository contains the source code for my personal engineering portfolio.
-
-Rather than serving as a traditional portfolio website, it is designed as a professional engineering workspace that communicates how I approach software development—from architecting backend systems and AI-powered applications to documenting technical decisions and continuously improving my engineering craft.
-
-The portfolio highlights real projects, practical experience, and the technologies I use to build scalable, maintainable, and production-ready software.
-
----
-
-# Highlights
-
-- Production-focused engineering portfolio
-- Fully responsive desktop and mobile experience
-- Modular React architecture
-- Professional dark developer-first design
-- Engineering timeline and experience showcase
-- Technology toolbox with categorized skills
-- Project case studies
-- Resume download
-- Optimized for modern browsers
-- Continuous deployment using Vercel
-
----
-
-# Featured Projects
-
-## GatePulse
-
-A production-grade API Gateway platform built with modern backend engineering practices.
-
-**Highlights**
-
-- API Key Management
-- JWT Authentication
-- Token Bucket Rate Limiting
-- Analytics Dashboard
-- Request Logging
-- Docker Support
-- PostgreSQL + Prisma
-- React Dashboard
-
----
-
-## AI Voice Agent
-
-An AI-powered voice assistant capable of understanding spoken requests and executing real desktop actions.
-
-**Highlights**
-
-- Google Gemini Integration
-- Whisper Speech Recognition
-- Edge TTS
-- Voice Activity Detection
-- Modular Tool Dispatcher
-- FastAPI Backend
-- Natural Voice Conversations
-
----
-
-# Tech Stack
-
-### Frontend
-
-- React
-- TypeScript
-- Vite
-- CSS
-- Lucide Icons
-
-### Backend
-
-- Node.js
-- Express.js
-- FastAPI
-- PostgreSQL
-- Prisma
-
-### AI
-
-- Google Gemini
-- Whisper
-- Edge TTS
-
-### Tools
-
-- Git
-- GitHub
-- Docker
-- Vercel
-- VS Code
-
----
-
-# Features
-
-- Responsive Layout
-- Engineering-focused UI
-- Modern Typography
-- Smooth Section Navigation
-- Project Showcase
-- Interactive Technology Toolbox
-- Professional Experience Timeline
-- Resume Download
-- Contact Section
-- Dark Theme
-- Optimized Assets
-- Accessibility-conscious Design
-
----
-
-# Project Structure
-
-```text
-.
-├── public/
-├── README-assets/
-├── src/
-│   ├── animations/
-│   ├── app/
-│   ├── components/
-│   │   ├── chapters/
-│   │   ├── common/
-│   │   └── ui/
-│   ├── hooks/
-│   ├── styles/
-│   └── utils/
-├── package.json
-└── vite.config.ts
-```
-
----
-
-# Getting Started
-
-Clone the repository
-
-```bash
-git clone https://github.com/harshdeepsingh888-ps/Harshdeep-Portfolio.git
-```
-
-Install dependencies
+## Running locally
 
 ```bash
 npm install
-```
-
-Start the development server
-
-```bash
 npm run dev
 ```
 
-Create a production build
-
 ```bash
-npm run build
+npm run build && npm start
 ```
 
-Preview the production build
-
-```bash
-npm run preview
-```
-
----
-
-# Deployment
-
-The portfolio is continuously deployed using **Vercel**.
-
-Every push to the `main` branch automatically generates a new production deployment.
-
----
-
-# Design Philosophy
-
-This portfolio was designed around a simple principle:
-
-> **Show engineering, not just projects.**
-
-Every section is intentionally structured to communicate software engineering thinking rather than simply displaying completed work.
-
-The visual language emphasizes clarity, structure, and professionalism while maintaining a distinctive developer-focused identity.
-
----
-
-# Performance Goals
-
-- Fast page load
-- Responsive across devices
-- Clean component architecture
-- Optimized assets
-- Accessible navigation
-- Maintainable codebase
-
----
-
-# Roadmap
-
-- [ ] Engineering Case Study pages
-- [ ] Interactive project walkthroughs
-- [ ] Project search
-- [ ] Blog section
-- [ ] Motion enhancements
-- [ ] Additional accessibility improvements
-- [ ] Performance optimization
-
----
-
-# About Me
-
-I'm a Software Engineering student passionate about backend engineering, AI systems, and developer tooling.
-
-I enjoy building software that solves practical problems while following production-grade engineering practices.
-
-I'm currently seeking Software Engineering Internship opportunities where I can contribute to impactful products and continue growing as an engineer.
-
----
-
-# Connect With Me
-
-- 🌐 Portfolio: https://harshdeep-portfolio-tau.vercel.app/
-- 💼 LinkedIn: https://www.linkedin.com/in/harshdeep-singh-073b02320/
-- 💻 GitHub: https://github.com/harshdeepsingh888-ps
-- 📧 Email: harshdeepsingh87179@gmail.com
-
----
-
-# License
-
-This project is licensed under the MIT License.
-
----
-
-<div align="center">
-
-### Building software with curiosity, craft, and purpose.
-
-Made with ❤️ using React, TypeScript and Vite.
-
-</div>
+Requires Node.js 20.9+. Deployed on Vercel; every push to `main` deploys.

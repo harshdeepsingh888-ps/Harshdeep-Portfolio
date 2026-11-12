@@ -1,0 +1,103 @@
+.stack {
+  position: relative;
+  z-index: 2;
+  padding: clamp(80px, 9vw, 140px) var(--pad);
+  padding-left: calc(var(--pad) + var(--rail));
+  background: var(--bg);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  max-width: 1100px;
+  margin-bottom: clamp(40px, 5vw, 72px);
+}
+
+.title em {
+  font-style: normal;
+  color: var(--acc);
+}
+
+/* ---------- phones: two linked lists ---------- */
+
+.lists {
+  display: grid;
+  gap: 36px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  font-size: 14px;
+  transition: color 0.3s, opacity 0.3s, border-color 0.3s;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  transition: opacity 0.3s;
+}
+
+.projectName {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.skill[data-on="true"] {
+  border-color: var(--acc);
+}
+
+.skill[data-on="true"] :global(.mut),
+.project[data-on="true"] :global(.mut) {
+  color: var(--acc-2);
+}
+
+.skill[data-dim="true"],
+.project[data-dim="true"] {
+  opacity: 0.32;
+}
+
+/* ---------- desktop: the node graph replaces the lists (which stay for screen readers) ---------- */
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .desktop {
+    display: block;
+  }
+
+  .lists {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}

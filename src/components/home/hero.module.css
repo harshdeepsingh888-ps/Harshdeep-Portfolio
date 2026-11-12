@@ -1,0 +1,162 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.canvas[data-ready="true"] {
+  opacity: 1;
+}
+
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: max(600px, 100svh);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--pad);
+  padding-top: calc(var(--pad) + 80px);
+  padding-left: calc(var(--pad) + var(--rail));
+  padding-bottom: calc(var(--pad) * 0.55);
+}
+
+/* Shown before WebGL arrives (or if it never does). */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(70% 45% at 60% 62%, rgba(255, 91, 31, 0.13), transparent 70%);
+  pointer-events: none;
+}
+
+.meta,
+.name {
+  position: relative;
+  z-index: 1;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 480px);
+  align-items: end;
+  gap: 32px;
+  margin-bottom: clamp(18px, 2.4vw, 36px);
+}
+
+.status {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px 9px 13px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(6, 6, 6, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.intro {
+  display: grid;
+  gap: 18px;
+}
+
+.lede {
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.5;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+.now {
+  color: var(--fg-2);
+}
+
+.facts {
+  display: grid;
+  border-top: 1px solid var(--line-2);
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.name {
+  /* Shrink to "Harshdeep" so "Singh." lines up under its end, whatever size the name is. */
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 600;
+  /* "Harshdeep" is ~5.7em wide in Clash Display: size it to fill the row exactly at any width. */
+  font-size: max(
+    56px,
+    min(330px, calc((100vw - 2 * var(--pad) - var(--rail)) / 5.75), calc((100svh - 470px) / 1.8))
+  );
+  line-height: 0.8;
+  letter-spacing: -0.045em;
+}
+
+/* Each line is a mask for the slide-up reveal. Clash Display's descenders reach ~0.18em below the baseline,
+   so the mask extends 0.12em past the 0.8em line box; the small negative margin keeps the lines tight
+   while leaving a clear gap between the "p" of Harshdeep and the "h" of Singh. */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.03em;
+  /* The tight negative tracking makes the last letter draw past the line's measured width;
+     widen the mask on the right without moving the text. */
+  padding-right: 0.08em;
+  margin-right: -0.08em;
+}
+
+.line > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.lineEnd {
+  align-self: flex-end;
+}
+
+.dot {
+  color: var(--acc);
+}
+
+/* Hidden until the intro plays — only when scripts run and this is the first visit. */
+:global(html.js:not([data-seen])) .line > span {
+  transform: translateY(125%);
+  animation: line-safety 0.8s var(--ease) 3s forwards;
+}
+
+@keyframes line-safety {
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html.js:not([data-seen])) .line > span {
+    transform: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    min-height: max(560px, 100svh);
+    padding-top: 96px;
+  }
+  .meta {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
